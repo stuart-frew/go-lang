@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta22
+kind: Config
+build:
+  artifacts:
+    - image: frew.dev/rest-demo
+  local: {}
+deploy:
+  helm:
+    releases:
+      - name: rest-server
+        chartPath: helm/rest-server
+        skipBuildDependencies: true
+        artifactOverrides:
+          image: frew.dev/rest-demo
+        imageStrategy:
+          helm: {}
