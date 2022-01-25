@@ -56,4 +56,9 @@ jobs:
       uses: github/codeql-action/analyze@v1
       
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag frew.dev/rest-server:$(date +%s)
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: $(date +%s)
+        labels: "A Label"
